@@ -1,9 +1,11 @@
 var wordsArray = ['sick', 'ham', 'mad', 'hakunamatada']
 var wordDisplay = document.getElementById('word-display')
 var debuggerDisplay = document.getElementsByClassName('debug')[0]
+var statusDisplay = document.getElementById('status-display')
 var currentKeys = []
 var currentWordLength = 0
 var currentWord = ''
+var score = 0
 
 window.onload = function() {
 
@@ -15,6 +17,8 @@ window.onload = function() {
         if (currentKeys.length == currentWordLength) {
             debuggerDisplay.textContent = 'correct'
             console.log('correct, word reset')
+            score++
+            statusDisplay.textContent = score
             clear()
             displayRandomWord(wordsArray)
         }
@@ -25,7 +29,7 @@ window.onload = function() {
             else {
                 debuggerDisplay.textContent = 'fail'
                 clear()
-                displayRandomWord(wordsArray)
+                gameStart()
             }
         }
 
@@ -49,9 +53,15 @@ window.onload = function() {
         currentWordLength = words[randomIndex].length
     }
 
+    function gameStart()
+    {
+        score = 0
+        statusDisplay.textContent = 'Ready'
+        displayRandomWord(wordsArray)
+    }
     //event listeners
     window.addEventListener('keydown', detectKeyPress)
 
     //function calls
-    displayRandomWord(wordsArray)
+    gameStart()
 }
