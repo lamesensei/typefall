@@ -1,4 +1,4 @@
-#Typing Game 
+# Typing Game
 A javascript based game involving typing. 
 ## To-do List
 ##### MVP
