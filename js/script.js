@@ -2,6 +2,7 @@ var wordsArray = ['Start']
 var wordDisplay = document.getElementById('word-display')
 var debuggerDisplay = document.getElementsByClassName('debug')[0]
 var statusDisplay = document.getElementById('status-display')
+//var currentChar = document.getElementById(currentWord[currentWord.length - 1])
 var currentKeys = []
 var currentWordLength = 0
 var currentWord = ''
@@ -14,23 +15,41 @@ window.onload = function() {
         currentKeys = [];
     }
 
+    function animateKeys() {
+
+    }
+
+    function checkScore(operator) {
+        if (score < 1) {
+            statusDisplay.textContent = 'YOU LOSE'
+            console.log('you lose');
+            setTimeout(gameStart, 2000)
+        } else {
+            statusDisplay.textContent = score
+            displayRandomWord(wordsArray)
+        }
+        //console.log(score)
+    }
+
     function compareKeys() {
         if (currentKeys.length == currentWordLength) {
+            console.log(currentKeys.length == currentWordLength)
             debuggerDisplay.textContent = 'correct'
             console.log('correct, word reset')
             score++
-            statusDisplay.textContent = score
+            checkScore('+')
             clear()
-            displayRandomWord(wordsArray)
         }
         if (currentKeys.length != 0) {
             if (currentKeys.join('')[currentKeys.length - 1] == currentWord[currentKeys.length - 1]) {
                 debuggerDisplay.textContent = `match: ${currentKeys.join('')}`
+                console.log('match detected');
             }
             else {
-                debuggerDisplay.textContent = 'fail'
+                debuggerDisplay.textContent = `wrong key: ${currentKeys[currentKeys.length-1]}`
+                score--
+                checkScore('-')
                 clear()
-                gameStart()
             }
         }
     }
@@ -38,8 +57,6 @@ window.onload = function() {
     function detectKeyPress(event) {
         currentKeys.push(event.key)
         console.log(currentKeys)
-
-        //debuggerDisplay.textContent = `Current keys: ${currentKeys.join('')}, Press Count: ${currentKeys.length} `
         compareKeys()
     }
 
@@ -64,7 +81,7 @@ window.onload = function() {
                 wordsArray.push(e.word)
             })
             console.log('words loaded');
-            displayRandomWord(wordsArray)
+            //displayRandomWord(wordsArray)
         }
     }
 
@@ -74,7 +91,17 @@ window.onload = function() {
         if (currentWord == words[randomIndex])
             return displayRandomWord(words)
         currentWord = words[randomIndex]
-        wordDisplay.textContent = currentWord
+
+        var fullString = []
+        for (e in currentWord) {
+            var spanID = currentWord[e]
+            var spanStart = `<span id="${spanID}">`
+            var spanEnd = '</span>'
+            fullString.push(spanStart)
+            fullString.push(currentWord[e])
+            fullString.push(spanEnd)
+        }
+        wordDisplay.innerHTML = fullString.join('')
         currentWordLength = words[randomIndex].length
         console.log('word changed');
     }
@@ -82,9 +109,12 @@ window.onload = function() {
     function gameStart()
     {
         score = 0
-        statusDisplay.textContent = 'Go'
+        statusDisplay.textContent = 'loading'
         getWords()
-        displayRandomWord(wordsArray)
+        setTimeout(function() {
+            displayRandomWord(wordsArray)
+            statusDisplay.textContent = 'Go'
+        }, 300)
         console.log('game loaded');
     }
     //event listeners
