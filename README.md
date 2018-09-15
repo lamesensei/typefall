@@ -1,9 +1,22 @@
-# Type Defuser
-Race against time to defuse the bomb. Grammar Nazis have planted a C4 in the United Verbs building. As top EOD expert of the Adjective city - it falls to you to save the day.
-## Features
+#Typing Game 
+A javascript based game involving typing. 
+## To-do List
 ##### MVP
-- [ ] Defuse the bomb by **typing**
-##### MORE STUFF
-- [ ] Race against **time**
-- [ ] Realistic **Graphics**
-- [ ] Intense **Music**
+- [x] Detect player typing input
+- [x]	Display single target string / char 
+	- [x] AJAX request target string / char
+- [x] Check player typing input against single target
+	- [x] Check player input by char
+- [x] Score tracking
+##### Enemies
+- [ ] Display (spawn randomly) multiple targets
+	- [ ] Spawn via grid
+	- [ ] Spawn via canvas
+- [ ] Check player typing input against multiple targets
+##### Extra
+- [ ] Implement story 'prompts' before game start
+##### Polish
+- [ ] Styling
+- [ ]	Audio
+- [ ] Animations
+- [ ] Refactoring
