@@ -10,7 +10,29 @@ body {
 	align-items: center;
 }
 
-.debug {
+.middle {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-gap: 2em;
+	width: calc(100vmin - 4em);
+  height: calc(100vh - 4em);
+	padding: 5% 0
+}
+
+.grid-square {
+
+}
+
+.status {
+	padding: 5% 0;
+}
+
+.input {
+	padding: 5% 0;
+}
+
+/* .debug {
 	font-family: monospace;
 }
 
@@ -18,4 +40,4 @@ body {
 	font-family: monospace;
 	font-weight: bold;
 	font-size: 50px;
-}
+} */
