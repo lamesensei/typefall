@@ -1,5 +1,7 @@
 # Typing Game
 A javascript based game involving typing. 
+## Run
+Visit https://lamesensei.github.io/wdi-unit1-game/ to test the latest commit!
 ## To-do List
 ##### MVP
 - [x] Detect player typing input
