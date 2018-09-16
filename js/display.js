@@ -19,4 +19,12 @@ function createGrid() {
     console.log('Grid Initialised');
 }
 
+//display enemy on DOM
+function displayEnemy(x, y, text) {
+    console.log(text + x + y);
+    var pos = document.getElementById(x + y)
+    pos.innerHTML = text
+    console.log('Enemy Display Loaded');
+}
+
 createGrid()

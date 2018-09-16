@@ -8,6 +8,7 @@ body {
 	flex-flow: column;
 	justify-content: center;
 	align-items: center;
+	font-family: monospace;
 }
 
 .middle {
@@ -17,19 +18,32 @@ body {
 	grid-gap: 2em;
 	width: calc(100vmin - 4em);
   height: calc(100vh - 4em);
-	padding: 5% 0
+
 }
 
 .grid-square {
-
+	width: calc(25vmin - 4em);
+	height: calc(25vh - 4em);
+	place-self: center;
+	place-content: center;
 }
 
 .status {
-	padding: 5% 0;
+	width: 100%;
+	display: block;
+	background: black;
+	color: white;
+	padding: 10px 0;
+	margin-bottom: 10px;
 }
 
 .input {
-	padding: 5% 0;
+	width: 100%;
+	background: black;
+	color: white;
+	padding: 10px 0;
+	display: block;
+	margin-top: 10px;
 }
 
 /* .debug {
