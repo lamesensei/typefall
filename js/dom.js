@@ -1,18 +1,18 @@
 var body = document.querySelector('body')
 var middle = document.getElementsByClassName('middle')[0]
-
+var bottom = document.querySelector('footer')
 
 //create 3x3 grid
-function createGrid() {
+function createGrid(size) {
 
-    //remove exsisting board if any
+    //remove exsisting grid if any
     while (middle.lastChild) {
         middle.removeChild(middle.lastChild)
     }
 
     //create individual grid squares
-    for (x = 0; x < 3; x++) {
-        for (y = 0; y < 3; y++) {
+    for (x = 0; x < size; x++) {
+        for (y = 0; y < size; y++) {
             var square = document.createElement('div')
             square.classList = 'grid-square'
             square.id = x.toString() + y.toString()
@@ -32,5 +32,7 @@ function displayEnemy(x, y, text) {
     pos.innerHTML = text
     console.log('Enemy Display Loaded');
 }
-
-createGrid()
+//display player input
+function displayKeys(currentKeys) {
+    bottom.textContent = currentKeys.join('')
+}

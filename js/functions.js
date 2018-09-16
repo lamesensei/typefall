@@ -1,5 +1,3 @@
-var alphabet = ['a', 'b', 'c', 'd']
-
 function spannify(word) {
     var spannified = []
     for (e in word) {
@@ -24,7 +22,21 @@ function generateEnemy(arr) {
     var x = rand(3, 0).toString()
     var y = rand(3, 0).toString()
     displayEnemy(x, y, enemy)
-    console.log(`Enemy Generated: ${enemy}, ${x}, ${y}`);
+    return console.log(`Enemy Generated: ${enemy}, ${x}, ${y}`);
 }
 
-generateEnemy(alphabet)
+//verify keypress and act accordingly
+function verifyKeys(event) {
+    if (event.key == 'Backspace') {
+        currentKeys.pop()
+        return displayKeys(currentKeys)
+    } else if (event.key == 'Enter') {
+        currentKeys = [] //clear current keys when enter pressed
+        console.log('Enter was pressed');
+        return displayKeys(currentKeys)
+    } else {
+        currentKeys.push(event.key)
+        displayKeys(currentKeys)
+    }
+    return console.log(currentKeys.join(''));
+}
