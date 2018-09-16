@@ -1,6 +1,25 @@
 var body = document.querySelector('body')
 var middle = document.getElementsByClassName('middle')[0]
 var bottom = document.querySelector('footer')
+var intervalID
+
+function spannify(word) {
+    var spannified = []
+    for (e in word) {
+        var spanID = word[e]
+        var spanStart = `<span id="${spanID}">`
+        var spanEnd = '</span>'
+        spannified.push(spanStart)
+        spannified.push(word[e])
+        spannified.push(spanEnd)
+    }
+    return spannified.join('')
+}
+
+//return a random integer between min(inclusive) and max value
+function rand(max, min) {
+    return Math.floor(Math.random() * (max - min)) + min
+}
 
 //create 3x3 grid
 function createGrid(size) {
@@ -35,4 +54,19 @@ function displayEnemy(x, y, text) {
 //display player input
 function displayKeys(currentKeys) {
     bottom.textContent = currentKeys.join('')
+}
+
+
+function blink() {
+    bottom.innerHTML = spannify('Type:_')
+    intervalID = setInterval(selector, 500)
+}
+
+function selector() {
+    var x = document.getElementById('_')
+    x.style.backgroundColor = x.style.backgroundColor == "white" ? "black" : "white";
+}
+
+function stopBlink() {
+    clearInterval(intervalID);
 }
