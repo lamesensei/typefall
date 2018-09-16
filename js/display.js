@@ -4,6 +4,12 @@ var middle = document.getElementsByClassName('middle')[0]
 
 //create 3x3 grid
 function createGrid() {
+
+    //remove exsisting board if any
+    while (middle.lastChild) {
+        middle.removeChild(middle.lastChild)
+    }
+
     //create individual grid squares
     for (x = 0; x < 3; x++) {
         for (y = 0; y < 3; y++) {
