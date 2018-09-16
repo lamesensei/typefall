@@ -11,8 +11,15 @@ function generateEnemy(arr) {
 function verifyKeys(event) {
     if (event.key == 'Backspace') {
         currentKeys.pop()
-        return displayKeys(currentKeys)
+        if (currentKeys.length !== 0) {
+            return displayKeys(currentKeys)
+        }
+        else {
+            console.log(currentKeys.length);
+            return blink()
+        }
     } else if (event.key == 'Enter') {
+        stopBlink(blink)
         blink()
         currentKeys = [] //clear current keys when enter pressed
     } else {

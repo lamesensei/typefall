@@ -1,4 +1,4 @@
-var alphabet = ['a', 'b', 'c', 'd']
+var alphabet = ['this', 'was', 'a', 'triumph']
 var currentKeys = []
 
 window.onload = function() {
