@@ -58,7 +58,11 @@ text: {
     }
     //display player input
     function displayKeys(currentKeys) {
-        bottom.textContent = currentKeys.join('')
+        var spannified = []
+        for (i in currentKeys) {
+            spannified.push(spannify(currentKeys[i]))
+        }
+        return bottom.innerHTML = spannified.join('')
     }
 }
 
