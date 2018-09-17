@@ -1,71 +1,12 @@
-body {
-	padding: 0;
-	margin: 0;
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	display: flex;
-	flex-flow: column;
-	justify-content: center;
-	align-items: center;
+html,body {
+  height: 100%;
 	font-family: monospace;
 	font-size: 35px;
-	background-color: black;
-}
-
-header {
-	display: inline-grid;
-	grid-template-columns: 1fr 1fr 1fr;
-}
-
-p {
-
-}
-
-.middle {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr;
-	width: calc(100vmin - 4em);
-  height: calc(100vh - 4em);
-}
-
-.grid-square {
-	width: calc(25vmin - 4em);
-	height: calc(25vh - 4em);
-	place-self: center;
-	place-content: center;
-	color:white;
-}
-
-.status {
-	width: 100%;
-	display: block;
 	background: black;
 	color: white;
-	padding: 10px 0;
-	margin-bottom: 10px;
-	text-align: center;
-	min-height: 30px;
 }
-
-.input {
-	width: 100%;
-	background: black;
-	color: white;
-	padding: 10px 0;
-	display: block;
-	margin-top: 10px;
-	text-align: center;
-	min-height: 30px;
+footer {
+ position: absolute;
+ bottom: 0;
+ width: 100%;
 }
-
-/* .debug {
-	font-family: monospace;
-}
-
-.display {
-	font-family: monospace;
-	font-weight: bold;
-	font-size: 50px;
-} */

@@ -38,15 +38,18 @@ game: {
 
         //create individual grid squares
         for (x = 0; x < size; x++) {
+            var newRow = document.createElement('div')
+            newRow.classList = 'row h-25'
+            middle.appendChild(newRow)
             for (y = 0; y < size; y++) {
                 var square = document.createElement('div')
-                square.classList = 'grid-square'
+                square.classList = 'grid-square col text-center h-25'
                 square.id = x.toString() + y.toString()
                 square.style.padding = '20px'
                 square.style.fontSize = `${rand(40, 10)}px`
                 //square.style.border = 'solid 2px black'
                 //square.textContent = square.id
-                middle.appendChild(square)
+                newRow.appendChild(square)
             }
         }
         console.log('Grid Initialised');
@@ -75,7 +78,7 @@ text: {
         target.style.color = 'white'
         var utterThis = new SpeechSynthesisUtterance('NOICE');
         synth.speak(utterThis)
-        return target.textContent = 'BOOM'
+        return target.style.textDecoration = 'line-through'
     }
 
     function updateScore() {
