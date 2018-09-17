@@ -9,14 +9,13 @@ body {
 	justify-content: center;
 	align-items: center;
 	font-family: monospace;
-	font-size: 20px;
+	font-size: 35px;
 }
 
 .middle {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
-	grid-gap: 2em;
 	width: calc(100vmin - 4em);
   height: calc(100vh - 4em);
 }

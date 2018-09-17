@@ -40,7 +40,7 @@ game: {
                 square.classList = 'grid-square'
                 square.id = x.toString() + y.toString()
                 square.style.padding = '20px'
-                square.style.fontSize = '30px'
+                square.style.fontSize = `${rand(40, 10)}px`
                 //square.style.border = 'solid 2px black'
                 //square.textContent = square.id
                 middle.appendChild(square)
@@ -71,6 +71,7 @@ text: {
         target.style.fontWeight = 'Bold'
         target.style.background = 'black'
         target.style.color = 'white'
+        target.style.fontSize = '30px'
         return target.textContent = 'BOOM'
     }
 }
