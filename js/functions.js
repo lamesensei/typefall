@@ -1,17 +1,25 @@
 //generate text enemy from array/json
 function generateEnemy(arr) {
+    var matchCount = 0
     var enemyObj = new Object()
-    enemyObj.text = arr[rand(arr.length, 0)]
     enemyObj.x = rand(3, 0).toString()
     enemyObj.y = rand(3, 0).toString()
-    displayEnemy(enemyObj.x, enemyObj.y, spannify(enemyObj.text))
-    currentEnemies.push(enemyObj)
-    // var enemy = arr[rand(arr.length, 0)]
-    // var x = rand(3, 0).toString()
-    // var y = rand(3, 0).toString()
-    // displayEnemy(x, y, spannify(enemy))
-    // currentEnemies.push(enemy)
-    return console.log(`Enemy Generated: ${enemyObj.text}, ${x}, ${y}`);
+    var randText = arr[rand(arr.length, 0)]
+    for (i in currentEnemies) {
+        if (enemyObj.x == currentEnemies[i].x && enemyObj.y == currentEnemies[i].y)
+            matchCount++
+        if (randText == currentEnemies[i].text)
+            matchCount++
+    }
+    if (matchCount <= 0) {
+        enemyObj.text = randText
+        displayEnemy(enemyObj.x, enemyObj.y, spannify(enemyObj.text))
+        currentEnemies.push(enemyObj)
+        return console.log(`Enemy Generated: ${enemyObj.text}, ${enemyObj.x}, ${enemyObj.y}`);
+    } else {
+        //return generateEnemy(arr)
+    }
+    return console.log(`duplicated detected`)
 }
 
 //verify keypress and act accordingly
@@ -42,12 +50,36 @@ function compareKeys() {
             header.textContent = 'MATCHED'
             currentKeys = []
             removeEnemy(currentEnemies[i].x, currentEnemies[i].y)
-            blink()
+            return blink()
         }
-        else {
-            header.textContent = 'WRONG'
-            currentKeys = []
-            blink()
-        }
+    }
+    header.textContent = 'WRONG'
+    currentKeys = []
+    blink()
+}
+
+ajax: {
+
+    function getWords() {
+        var request = new XMLHttpRequest()
+        request.addEventListener("error", requestFailed);
+        request.addEventListener("load", wordLoad)
+        request.open("GET", `https://api.datamuse.com/words?rel_jjb=computer`)
+        request.send()
+    }
+
+    function requestFailed(event) {
+        console.log("response text", this.responseText)
+        console.log("status text", this.statusText)
+        console.log("status code", this.status)
+    }
+
+    function wordLoad(event) {
+        var result = JSON.parse(this.responseText)
+        result.forEach(function(e) {
+            wordsArray.push(e.word)
+        })
+        console.log('words loaded');
+        //displayRandomWord(wordsArray)
     }
 }

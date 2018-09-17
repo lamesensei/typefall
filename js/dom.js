@@ -40,8 +40,9 @@ game: {
                 square.classList = 'grid-square'
                 square.id = x.toString() + y.toString()
                 square.style.padding = '20px'
-                square.style.border = 'solid 2px black'
-                square.textContent = square.id
+                square.style.fontSize = '30px'
+                //square.style.border = 'solid 2px black'
+                //square.textContent = square.id
                 middle.appendChild(square)
             }
         }
@@ -54,7 +55,7 @@ text: {
     function displayEnemy(x, y, text) {
         var pos = document.getElementById(x + y)
         pos.innerHTML = text
-        console.log(`Enemy Loaded: ${text}`);
+        //        console.log(`Enemy Loaded: ${text}`);
     }
     //display player input
     function displayKeys(currentKeys) {
@@ -67,22 +68,27 @@ text: {
 
     function removeEnemy(x, y) {
         var target = document.getElementById(x + y)
+        target.style.fontWeight = 'Bold'
+        target.style.background = 'black'
+        target.style.color = 'white'
         return target.textContent = 'BOOM'
     }
 }
 
 animations: {
+    //add setInterval to _
     function blink() {
         stopBlink()
         bottom.innerHTML = spannify('_')
         intervalID = setInterval(selector, 500)
     }
 
+    //animation style
     function selector() {
         var x = document.getElementById('_')
         x.style.backgroundColor = x.style.backgroundColor == "white" ? "black" : "white";
     }
-
+    //clear interval
     function stopBlink() {
         clearInterval(intervalID);
     }
