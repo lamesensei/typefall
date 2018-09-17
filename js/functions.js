@@ -1,17 +1,17 @@
 //generate text enemy from array/json
 function generateEnemy(arr) {
-    var matchCount = 0
+    var duplicate = 0
     var enemyObj = new Object()
     enemyObj.x = rand(3, 0).toString()
     enemyObj.y = rand(3, 0).toString()
     var randText = arr[rand(arr.length, 0)]
     for (i in currentEnemies) {
         if (enemyObj.x == currentEnemies[i].x && enemyObj.y == currentEnemies[i].y)
-            matchCount++
+            duplicate++
         if (randText == currentEnemies[i].text)
-            matchCount++
+            duplicate++
     }
-    if (matchCount <= 0) {
+    if (duplicate == 0) {
         enemyObj.text = randText
         displayEnemy(enemyObj.x, enemyObj.y, spannify(enemyObj.text))
         currentEnemies.push(enemyObj)
@@ -50,11 +50,15 @@ function compareKeys() {
             header.textContent = 'MATCHED'
             currentKeys = []
             removeEnemy(currentEnemies[i].x, currentEnemies[i].y)
+            score++
+            if (score == currentEnemies.length)
+                header.textContent = 'YOU WIN'
             return blink()
         }
     }
     header.textContent = 'WRONG'
     currentKeys = []
+    score--
     blink()
 }
 

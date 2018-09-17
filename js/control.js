@@ -1,6 +1,7 @@
 var wordsArray = []
 var currentKeys = []
 var currentEnemies = []
+var score = 0
 
 window.onload = function() {
     //init game
@@ -13,7 +14,7 @@ window.onload = function() {
             i++
         }
         blink()
-    }, 2000)
+    }, 1000)
 
 
     //event listeners
