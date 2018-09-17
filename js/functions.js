@@ -73,7 +73,7 @@ function compareKeys() {
         }
     }
     currentStatus.textContent = 'WRONG'
-    var utterThis = new SpeechSynthesisUtterance('oi');
+    var utterThis = new SpeechSynthesisUtterance('mai lai leh');
     synth.speak(utterThis)
     currentKeys = []
     score--

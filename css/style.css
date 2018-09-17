@@ -2,11 +2,24 @@ html,body {
   height: 100%;
 	font-family: monospace;
 	font-size: 35px;
-	background: black;
+background: black;
 	color: white;
+
 }
+
+header {
+
+}
+
+.middle {
+			background-image: url('../c4.jpg');
+			background-size: cover;
+			background-position: center;
+}
+
 footer {
  position: absolute;
+ background: black;
  bottom: 0;
  width: 100%;
 }

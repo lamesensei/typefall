@@ -45,7 +45,7 @@ game: {
                 var square = document.createElement('div')
                 square.classList = 'grid-square col text-center h-25'
                 square.id = x.toString() + y.toString()
-                square.style.padding = '20px'
+                //square.style.visibility = 'hidden'
                 square.style.fontSize = `${rand(40, 10)}px`
                 //square.style.border = 'solid 2px black'
                 //square.textContent = square.id
