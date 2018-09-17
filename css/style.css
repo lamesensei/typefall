@@ -10,6 +10,16 @@ body {
 	align-items: center;
 	font-family: monospace;
 	font-size: 35px;
+	background-color: black;
+}
+
+header {
+	display: inline-grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+p {
+
 }
 
 .middle {
@@ -25,6 +35,7 @@ body {
 	height: calc(25vh - 4em);
 	place-self: center;
 	place-content: center;
+	color:white;
 }
 
 .status {

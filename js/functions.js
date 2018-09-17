@@ -45,18 +45,36 @@ function verifyKeys(event) {
 }
 
 function compareKeys() {
-    for (i in currentEnemies) {
-        if (currentEnemies[i].text == currentKeys.join('')) {
-            header.textContent = 'MATCHED'
-            currentKeys = []
-            removeEnemy(currentEnemies[i].x, currentEnemies[i].y)
-            score++
-            if (score == currentEnemies.length)
-                header.textContent = 'YOU WIN'
+
+    if (currentKeys.join('') == 'restart' || currentKeys.join('') == 'reload') {
+        return location.reload()
+    }
+
+    for (i in konami) {
+        if (konami.join('') == currentKeys.join('')) {
+            currentStatus.textContent = "KONAMI'ed"
             return blink()
         }
     }
-    header.textContent = 'WRONG'
+
+    for (i in currentEnemies) {
+        if (currentEnemies[i].text == currentKeys.join('')) {
+            currentStatus.textContent = 'MATCHED'
+            currentKeys = []
+            removeEnemy(currentEnemies[i].x, currentEnemies[i].y)
+            score++
+            updateScore()
+            if (score == currentEnemies.length) {
+                currentStatus.textContent = 'YOU WIN'
+                var utterThis = new SpeechSynthesisUtterance('Win');
+                synth.speak(utterThis)
+            }
+            return blink()
+        }
+    }
+    currentStatus.textContent = 'WRONG'
+    var utterThis = new SpeechSynthesisUtterance('oi');
+    synth.speak(utterThis)
     currentKeys = []
     score--
     blink()

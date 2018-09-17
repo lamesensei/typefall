@@ -1,8 +1,11 @@
 var body = document.querySelector('body')
 var header = document.querySelector('header')
+var scoreStatus = document.getElementById('score')
+var currentStatus = document.getElementById('current-status')
 var middle = document.getElementsByClassName('middle')[0]
 var bottom = document.querySelector('footer')
 var intervalID
+var synth = window.speechSynthesis;
 
 utilities: {
     function spannify(word) {
@@ -63,16 +66,21 @@ text: {
         for (i in currentKeys) {
             spannified.push(spannify(currentKeys[i]))
         }
-        return bottom.innerHTML = spannified.join('')
+        bottom.innerHTML = spannified.join('')
+        return blinkEnd()
     }
 
     function removeEnemy(x, y) {
         var target = document.getElementById(x + y)
-        target.style.fontWeight = 'Bold'
-        target.style.background = 'black'
         target.style.color = 'white'
-        target.style.fontSize = '30px'
+        var utterThis = new SpeechSynthesisUtterance('NOICE');
+        synth.speak(utterThis)
         return target.textContent = 'BOOM'
+    }
+
+    function updateScore() {
+        console.log(score);
+        return scoreStatus.textContent = score
     }
 }
 
@@ -81,6 +89,14 @@ animations: {
     function blink() {
         stopBlink()
         bottom.innerHTML = spannify('_')
+        intervalID = setInterval(selector, 500)
+    }
+
+    function blinkEnd()
+    {
+        stopBlink()
+        var addSpan = spannify('_')
+        bottom.innerHTML = bottom.innerHTML + addSpan
         intervalID = setInterval(selector, 500)
     }
 
