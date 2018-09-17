@@ -2,7 +2,6 @@
 function generateEnemy(arr) {
     var enemyObj = new Object()
     enemyObj.text = arr[rand(arr.length, 0)]
-    console.log(enemyObj.text);
     enemyObj.x = rand(3, 0).toString()
     enemyObj.y = rand(3, 0).toString()
     displayEnemy(enemyObj.x, enemyObj.y, spannify(enemyObj.text))
@@ -12,7 +11,7 @@ function generateEnemy(arr) {
     // var y = rand(3, 0).toString()
     // displayEnemy(x, y, spannify(enemy))
     // currentEnemies.push(enemy)
-    return console.log(`Enemy Generated: ${enemyObj}, ${x}, ${y}`);
+    return console.log(`Enemy Generated: ${enemyObj.text}, ${x}, ${y}`);
 }
 
 //verify keypress and act accordingly
@@ -40,16 +39,15 @@ function verifyKeys(event) {
 function compareKeys() {
     for (i in currentEnemies) {
         if (currentEnemies[i].text == currentKeys.join('')) {
-            console.log('match found');
-
-            currentKeys = []
             header.textContent = 'MATCHED'
-
+            currentKeys = []
             removeEnemy(currentEnemies[i].x, currentEnemies[i].y)
             blink()
         }
         else {
-
+            header.textContent = 'WRONG'
+            currentKeys = []
+            blink()
         }
     }
 }

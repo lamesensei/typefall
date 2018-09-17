@@ -5,7 +5,12 @@ var currentEnemies = []
 window.onload = function() {
     //init game
     createGrid(3)
-    generateEnemy(alphabet)
+
+    var i = 0
+    while (i < 4) {
+        generateEnemy(alphabet)
+        i++
+    }
     blink()
 
     //event listeners
