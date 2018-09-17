@@ -69,7 +69,7 @@ text: {
 animations: {
     function blink() {
         stopBlink()
-        bottom.innerHTML = spannify('Type:_')
+        bottom.innerHTML = spannify('_')
         intervalID = setInterval(selector, 500)
     }
 

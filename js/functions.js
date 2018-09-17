@@ -23,7 +23,7 @@ function verifyKeys(event) {
         blink()
         currentKeys = [] //clear current keys when enter pressed
     } else {
-        currentKeys.push(event.key)
+        currentKeys.push(event.key.toUpperCase())
         stopBlink(blink)
         return displayKeys(currentKeys)
     }
