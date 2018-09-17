@@ -1,5 +1,6 @@
 var alphabet = ['this', 'was', 'a', 'triumph']
 var currentKeys = []
+var currentEnemies = []
 
 window.onload = function() {
     //init game

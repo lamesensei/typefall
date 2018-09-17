@@ -1,4 +1,5 @@
 var body = document.querySelector('body')
+var header = document.querySelector('header')
 var middle = document.getElementsByClassName('middle')[0]
 var bottom = document.querySelector('footer')
 var intervalID
@@ -51,10 +52,9 @@ game: {
 text: {
     //display enemy on DOM
     function displayEnemy(x, y, text) {
-        console.log(text + x + y);
         var pos = document.getElementById(x + y)
         pos.innerHTML = text
-        console.log('Enemy Display Loaded');
+        console.log(`Enemy Loaded: ${text}`);
     }
     //display player input
     function displayKeys(currentKeys) {
@@ -63,6 +63,11 @@ text: {
             spannified.push(spannify(currentKeys[i]))
         }
         return bottom.innerHTML = spannified.join('')
+    }
+
+    function removeEnemy(x, y) {
+        var target = document.getElementById(x + y)
+        return target.textContent = 'BOOM'
     }
 }
 
