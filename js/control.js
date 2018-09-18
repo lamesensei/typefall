@@ -22,7 +22,7 @@ window.onload = function() {
         var i = 0
         setTimeout(function() {
             detectLoss('loss')
-        }, 39400)
+        }, 69400)
         while (i < difficulty * 3) {
             generateEnemy(wordsArray, difficulty)
             i++
