@@ -77,8 +77,15 @@ text: {
 
     function removeEnemy(x, y) {
         var target = document.getElementById(x + y)
-        target.style.color = 'white'
-        var utterThis = new SpeechSynthesisUtterance('NOICE');
+        var rollDirection = rand(2, 0)
+        if (rollDirection == 1)
+            target.style.animationName = 'rollLeft'
+        else
+            target.style.animationName = 'rollRight'
+        target.style.animationFillMode = 'forwards'
+        target.style.animationTimingFunction = 'linear'
+        target.style.animationDuration = '2s'
+        var utterThis = new SpeechSynthesisUtterance('NOICE')
         synth.speak(utterThis)
         return target.style.textDecoration = 'line-through'
     }
@@ -86,6 +93,12 @@ text: {
     function updateScore() {
         console.log(score);
         return scoreStatus.textContent = score
+    }
+
+    function detectLoss(loss) {
+        if (loss) {
+            currentStatus.textContent = 'LOSS'
+        }
     }
 }
 

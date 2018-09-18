@@ -86,7 +86,7 @@ ajax: {
         var request = new XMLHttpRequest()
         request.addEventListener("error", requestFailed);
         request.addEventListener("load", wordLoad)
-        request.open("GET", `https://api.datamuse.com/words?rel_jjb=computer`)
+        request.open("GET", `https://api.datamuse.com/words?rel_jjb=code`)
         request.send()
     }
 

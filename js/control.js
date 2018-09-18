@@ -10,9 +10,11 @@ var konami = [
 ]
 var score = 0
 var difficulty = 5
+var state = 0
 
 window.onload = function() {
     //init game
+
     createGrid(difficulty)
     getWords()
     voices = synth.getVoices()
@@ -23,7 +25,11 @@ window.onload = function() {
             i++
         }
         blink()
+        setTimeout(function() {
+            detectLoss('loss')
+        }, 40000)
     }, 1000)
+
 
 
     //event listeners
