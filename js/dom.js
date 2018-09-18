@@ -41,20 +41,22 @@ game: {
             var newRow = document.createElement('div')
             newRow.classList = 'row h-25'
             middle.appendChild(newRow)
-            for (y = 0; y < size; y++) {
+            for (y = 0; y < 3; y++) {
                 var square = document.createElement('div')
-                square.classList = 'grid-square col text-center h-25'
+                square.classList = 'grid-square col text-center'
                 square.id = x.toString() + y.toString()
                 //square.style.visibility = 'hidden'
-                square.style.fontSize = `${rand(40, 10)}px`
-                //square.style.border = 'solid 2px black'
-                //square.textContent = square.id
+                square.style.fontSize = `${rand(50, 20)}px`
+                square.style.padding = '0'
                 newRow.appendChild(square)
             }
         }
-        console.log('Grid Initialised');
+        //middle.style.animationDuration = rand(50, 20)
     }
+    console.log('Grid Initialised');
 }
+
+
 
 text: {
     //display enemy on DOM

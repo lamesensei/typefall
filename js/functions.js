@@ -1,8 +1,8 @@
 //generate text enemy from array/json
-function generateEnemy(arr) {
+function generateEnemy(arr, difficulty) {
     var duplicate = 0
     var enemyObj = new Object()
-    enemyObj.x = rand(3, 0).toString()
+    enemyObj.x = rand(difficulty, 0).toString()
     enemyObj.y = rand(3, 0).toString()
     var randText = arr[rand(arr.length, 0)]
     for (i in currentEnemies) {

@@ -9,16 +9,17 @@ var konami = [
     'a', 'b'
 ]
 var score = 0
+var difficulty = 5
 
 window.onload = function() {
     //init game
-    createGrid(3)
+    createGrid(difficulty)
     getWords()
     voices = synth.getVoices()
     setTimeout(function() {
         var i = 0
         while (i < 10) {
-            generateEnemy(wordsArray)
+            generateEnemy(wordsArray, difficulty)
             i++
         }
         blink()
