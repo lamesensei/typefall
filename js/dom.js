@@ -30,7 +30,7 @@ utilities: {
 game: {
     //create 3x3 grid
     function createGrid(size) {
-
+        var milliseconds = 0.1
         //remove exsisting grid if any
         while (middle.lastChild) {
             middle.removeChild(middle.lastChild)
@@ -39,19 +39,22 @@ game: {
         //create individual grid squares
         for (x = 0; x < size; x++) {
             var newRow = document.createElement('div')
-            newRow.classList = 'row h-25'
+            newRow.classList = 'row'
             middle.appendChild(newRow)
-            for (y = 0; y < 3; y++) {
+            for (y = 0; y < size; y++) {
                 var square = document.createElement('div')
                 square.classList = 'grid-square col text-center'
                 square.id = x.toString() + y.toString()
                 //square.style.visibility = 'hidden'
-                square.style.fontSize = `${rand(50, 20)}px`
-                square.style.padding = '0'
+                square.style.animationDelay = `${milliseconds += 0.1}`
+                square.style.fontSize = `${rand(5, 1)}vw`
+                //square.style.padding = '40px'
                 newRow.appendChild(square)
             }
         }
-        //middle.style.animationDuration = rand(50, 20)
+        middle.style.position = 'absolute'
+        middle.style.top = '-100%'
+        middle.style.visibility = 'visible'
     }
     console.log('Grid Initialised');
 }
@@ -76,6 +79,20 @@ text: {
     }
 
     function removeEnemy(x, y) {
+        // var target = document.getElementById(x + y).children
+        // console.log(target);
+        // for (var i = 0; i < target.length; i++) {
+        //     console.log(target[i]);
+        //     var rollDirection = rand(2, 0)
+        //     if (rollDirection == 1)
+        //         target[i].style.animationName = 'rollLeft'
+        //     else
+        //         target[i].style.animationName = 'rollRight'
+        //     target[i].style.animationFillMode = 'forwards'
+        //     target[i].style.animationTimingFunction = 'linear'
+        //     target[i].style.animationDuration = '2s'
+        // }
+
         var target = document.getElementById(x + y)
         var rollDirection = rand(2, 0)
         if (rollDirection == 1)
@@ -85,9 +102,11 @@ text: {
         target.style.animationFillMode = 'forwards'
         target.style.animationTimingFunction = 'linear'
         target.style.animationDuration = '2s'
+
         var utterThis = new SpeechSynthesisUtterance('NOICE')
         synth.speak(utterThis)
         return target.style.textDecoration = 'line-through'
+
     }
 
     function updateScore() {

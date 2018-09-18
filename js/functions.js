@@ -3,7 +3,7 @@ function generateEnemy(arr, difficulty) {
     var duplicate = 0
     var enemyObj = new Object()
     enemyObj.x = rand(difficulty, 0).toString()
-    enemyObj.y = rand(3, 0).toString()
+    enemyObj.y = rand(difficulty, 0).toString()
     var randText = arr[rand(arr.length, 0)]
     for (i in currentEnemies) {
         if (enemyObj.x == currentEnemies[i].x && enemyObj.y == currentEnemies[i].y)
@@ -16,9 +16,7 @@ function generateEnemy(arr, difficulty) {
         displayEnemy(enemyObj.x, enemyObj.y, spannify(enemyObj.text))
         currentEnemies.push(enemyObj)
         return console.log(`Enemy Generated: ${enemyObj.text}, ${enemyObj.x}, ${enemyObj.y}`);
-    } else {
-        //return generateEnemy(arr)
-    }
+    } else {}
     return console.log(`duplicated detected`)
 }
 
@@ -58,6 +56,13 @@ function compareKeys() {
     }
 
     for (i in currentEnemies) {
+
+        // for (x in currentEnemies[i].text) {
+        //     var highlight = document.getElementById(currentKeys[x])
+        //     if (currentEnemies[i].text[x] == currentKeys[x])
+        //         highlight.style.background = 'white'
+        // }
+
         if (currentEnemies[i].text == currentKeys.join('')) {
             currentStatus.textContent = 'MATCHED'
             currentKeys = []
@@ -73,10 +78,10 @@ function compareKeys() {
         }
     }
     currentStatus.textContent = 'WRONG'
-    var utterThis = new SpeechSynthesisUtterance('mai lai leh');
+    var utterThis = new SpeechSynthesisUtterance('WRONG');
     synth.speak(utterThis)
     currentKeys = []
-    score--
+    //score--
     blink()
 }
 
@@ -86,7 +91,7 @@ ajax: {
         var request = new XMLHttpRequest()
         request.addEventListener("error", requestFailed);
         request.addEventListener("load", wordLoad)
-        request.open("GET", `https://api.datamuse.com/words?rel_jjb=code`)
+        request.open("GET", `https://api.datamuse.com/words?ml=computer&max=100`)
         request.send()
     }
 
@@ -98,10 +103,12 @@ ajax: {
 
     function wordLoad(event) {
         var result = JSON.parse(this.responseText)
+        var wordCount = 0
         result.forEach(function(e) {
             wordsArray.push(e.word)
+            wordCount++
         })
-        console.log('words loaded');
+        console.log(`Words loaded: ${wordCount}`);
         //displayRandomWord(wordsArray)
     }
 }

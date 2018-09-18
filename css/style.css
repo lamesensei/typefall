@@ -1,68 +1,96 @@
 html {
-	overscroll-behavior: none
+		overscroll-behavior: none
 }
 
-html,body {
-  height: 100%;
-	font-family: 'Share Tech Mono', monospace;
-	font-size: 35px;
-  background: black;
-	color: white;
-	position: relative;
+html, body {
+		height: 100%;
+		font-family: 'Share Tech Mono', monospace;
+		font-size: 2vw;
+		background: black;
+		color: white;
+		position: relative;
+		overflow: hidden;
 }
+
+#title {
+		font-size: 5vw;
+}
+
+col {}
 
 header {
-	background: black;
+		background: black;
 }
 
 .middle {
-	position: absolute;
-	top: -100%;
-	animation-name: falling;
-	animation-delay: 1s;
-	animation-fill-mode: forwards;
-	animation-timing-function: ease-in;
-	animation-duration: 25s;
+		top: -100%;
+		visibility: hidden;
+		animation-name: falling;
+		animation-fill-mode: forwards;
+		animation-timing-function: linear;
+		animation-duration: 60s;
 }
 
 .grid-square {
+		animation-name: resize;
+		animation-fill-mode: forwards;
+		animation-timing-function: ease-in;
+		animation-duration: 3s;
+		white-space: nowrap;
+}
 
+span {
+		/* display: inline-block; */
+}
+
+@keyframes resize {
+		from {
+				padding-top: 0px;
+		}
+
+		to {
+				padding-top: 30px;
+		}
 }
 
 @keyframes falling {
-	from {
-		top: -100%;
-	}
-	to {
-		top: 200%;
-	}
+		from {
+				top: -100%;
+		}
+
+		to {
+				top: 100%;
+		}
 }
 
 @keyframes rollRight {
-	from {
-		transform: rotate(0deg);
-		opacity: 1;
-	}
-	to {
-		transform: rotate(180deg);
-		opacity: 0;
-	}
+		from {
+				transform: rotate(0deg);
+				opacity: 1;
+		}
+
+		to {
+				transform: rotate(180deg);
+				opacity: 0;
+		}
 }
 
 @keyframes rollLeft {
 		from {
-			transform: rotate(360deg);
-			opacity: 1;
+				transform: rotate(360deg);
+				opacity: 1;
 		}
+
 		to {
-			transform: rotate(180deg);
-			opacity: 0;
+				transform: rotate(180deg);
+				opacity: 0;
 		}
 }
 
 footer {
- position: absolute;
- background: black;
- bottom: 0;
- width: 100%;
+		position: absolute;
+		background: black;
+		bottom: 0;
+		font-size: 50px;
+		width: 100%;
 }

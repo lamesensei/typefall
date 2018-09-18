@@ -9,7 +9,7 @@ var konami = [
     'a', 'b'
 ]
 var score = 0
-var difficulty = 5
+var difficulty = 10
 var state = 0
 
 window.onload = function() {
@@ -20,15 +20,15 @@ window.onload = function() {
     voices = synth.getVoices()
     setTimeout(function() {
         var i = 0
-        while (i < 10) {
+        while (i < difficulty * 3) {
             generateEnemy(wordsArray, difficulty)
             i++
         }
         blink()
-        setTimeout(function() {
-            detectLoss('loss')
-        }, 40000)
-    }, 1000)
+        // setTimeout(function() {
+        //     detectLoss('loss')
+        // }, 40000)
+    }, 600)
 
 
 
