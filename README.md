@@ -10,15 +10,20 @@ Visit https://lamesensei.github.io/wdi-unit1-game/ to test the latest commit!
 - [x] Check player typing input against single target
 	- [x] Check player input by char
 - [x] Score tracking
+- [ ] Detect Win / Loss
+- [ ] Win / Loss screen
 ##### Enemies
-- [ ] Display (spawn randomly) multiple targets
-	- [ ] Spawn via grid
+- [x] Display (spawn randomly) multiple targets
+	- [x] Spawn via grid
 	- [ ] Spawn via canvas
-- [ ] Check player typing input against multiple targets
+- [x] Check player typing input against multiple targets
 ##### Extra
 - [ ] Implement story 'prompts' before game start
+- [ ] Difficulty / words selection
 ##### Polish
-- [ ] Styling
+- [x] Styling
 - [ ]	Audio
-- [ ] Animations
+	- [x] Sounds
+	- [ ] Music
+- [x] Animations
 - [ ] Refactoring
