@@ -17,7 +17,7 @@ function generateEnemy(arr, difficulty) {
         currentEnemies.push(enemyObj)
         return console.log(`Enemy Generated: ${enemyObj.text}, ${enemyObj.x}, ${enemyObj.y}`);
     } else {}
-    return console.log(`duplicated detected`)
+    return console.log(`Duplicate found and rejected`)
 }
 
 //verify keypress and act accordingly
@@ -43,7 +43,7 @@ function verifyKeys(event) {
 }
 
 function compareKeys() {
-
+    var currentStatus = document.getElementById('current-status')
     if (currentKeys.join('') == 'restart' || currentKeys.join('') == 'reload') {
         return location.reload()
     }
@@ -56,7 +56,9 @@ function compareKeys() {
     }
 
     for (i in currentEnemies) {
-
+        var currentStatus = document.getElementById('current-status')
+        var clone = currentStatus.cloneNode(true)
+        currentStatus.parentNode.replaceChild(clone, currentStatus)
         // for (x in currentEnemies[i].text) {
         //     var highlight = document.getElementById(currentKeys[x])
         //     if (currentEnemies[i].text[x] == currentKeys[x])
@@ -64,7 +66,8 @@ function compareKeys() {
         // }
 
         if (currentEnemies[i].text == currentKeys.join('')) {
-            currentStatus.textContent = 'MATCHED'
+
+            flash(clone, 'MATCHED', 'yellow-flash')
             currentKeys = []
             removeEnemy(currentEnemies[i].x, currentEnemies[i].y)
             score++
@@ -77,7 +80,7 @@ function compareKeys() {
             return blink()
         }
     }
-    currentStatus.textContent = 'WRONG'
+    flash(clone, 'WRONG', 'red-flash')
     var utterThis = new SpeechSynthesisUtterance('WRONG');
     synth.speak(utterThis)
     currentKeys = []

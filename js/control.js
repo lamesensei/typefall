@@ -20,14 +20,15 @@ window.onload = function() {
     voices = synth.getVoices()
     setTimeout(function() {
         var i = 0
+        setTimeout(function() {
+            detectLoss('loss')
+        }, 39400)
         while (i < difficulty * 3) {
             generateEnemy(wordsArray, difficulty)
             i++
         }
         blink()
-        // setTimeout(function() {
-        //     detectLoss('loss')
-        // }, 40000)
+
     }, 600)
 
 

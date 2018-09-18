@@ -40,7 +40,23 @@ header {
 }
 
 span {
-		/* display: inline-block; */
+}
+
+#current-status {
+	animation-duration: 1.5s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes yellow-flash {
+	0% {color: white; font-weight: normal}
+	50% {color: yellow; font-weight: bold}
+	100% {color: white;font-weight: normal; opacity: 0;}
+}
+
+@keyframes red-flash {
+	0% {color: white; font-weight: normal}
+	50% {color: red; font-weight: bold}
+	100% {color: white;font-weight: normal; opacity:0;}
 }
 
 @keyframes resize {
@@ -91,6 +107,6 @@ footer {
 		position: absolute;
 		background: black;
 		bottom: 0;
-		font-size: 50px;
+		font-size: 3vw;
 		width: 100%;
 }

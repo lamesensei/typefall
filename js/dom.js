@@ -1,7 +1,6 @@
 var body = document.querySelector('body')
 var header = document.querySelector('header')
 var scoreStatus = document.getElementById('score')
-var currentStatus = document.getElementById('current-status')
 var middle = document.getElementsByClassName('middle')[0]
 var bottom = document.querySelector('footer')
 var intervalID
@@ -45,10 +44,11 @@ game: {
                 var square = document.createElement('div')
                 square.classList = 'grid-square col text-center'
                 square.id = x.toString() + y.toString()
-                //square.style.visibility = 'hidden'
                 square.style.animationDelay = `${milliseconds += 0.1}`
-                square.style.fontSize = `${rand(5, 1)}vw`
-                //square.style.padding = '40px'
+                square.style.fontSize = `${rand(6, 2)}vw`
+                var randomColor = `rgba(${rand(250, 50)},${rand(250, 50)},${rand(250, 50)})`
+                square.style.color = `${randomColor}`
+                // square.style.border = `1px solid white`
                 newRow.appendChild(square)
             }
         }
@@ -101,12 +101,11 @@ text: {
             target.style.animationName = 'rollRight'
         target.style.animationFillMode = 'forwards'
         target.style.animationTimingFunction = 'linear'
-        target.style.animationDuration = '2s'
+        target.style.animationDuration = '1s'
 
         var utterThis = new SpeechSynthesisUtterance('NOICE')
         synth.speak(utterThis)
         return target.style.textDecoration = 'line-through'
-
     }
 
     function updateScore() {
@@ -116,6 +115,7 @@ text: {
 
     function detectLoss(loss) {
         if (loss) {
+            var currentStatus = document.getElementById('current-status')
             currentStatus.textContent = 'LOSS'
         }
     }
@@ -145,5 +145,11 @@ animations: {
     //clear interval
     function stopBlink() {
         clearInterval(intervalID);
+    }
+
+    function flash(target, message, anim) {
+        target.textContent = message
+        target.style.animationName = anim
+        target.id = 'current-status'
     }
 }
