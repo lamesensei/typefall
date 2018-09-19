@@ -3,23 +3,32 @@ function generateEnemy(arr, difficulty) {
     var duplicate = 0
     var enemyObj = new Object()
     enemyObj.x = rand(difficulty, 0).toString()
-    enemyObj.y = rand(6, 0).toString()
+    enemyObj.y = rand(7, 0).toString()
     var randText = arr[rand(arr.length, 0)]
     if (randText.includes(' '))
         duplicate++
     for (i in currentEnemies) {
-        if (enemyObj.x == currentEnemies[i].x && enemyObj.y == currentEnemies[i].y)
-            duplicate++
         if (randText == currentEnemies[i].text)
             duplicate++
+        if (enemyObj.x == currentEnemies[i].x && enemyObj.y == currentEnemies[i].y) {
+            duplicate++
+        }
     }
     if (duplicate == 0) {
         enemyObj.text = randText
-        displayEnemy(enemyObj.x, enemyObj.y, spannify(enemyObj.text))
-        currentEnemies.push(enemyObj)
+        return insertEnemy(enemyObj)
         //return console.log(`Enemy Generated: ${enemyObj.text}, ${enemyObj.x}, ${enemyObj.y}`);
-    } else {}
-    return console.log(`Duplicate found and rejected`)
+    } else {
+
+    }
+    // return console.log(`Duplicate found and rejected`)
+}
+
+
+function insertEnemy(enemyObj) {
+    displayEnemy(enemyObj.x, enemyObj.y, spannify(enemyObj.text))
+    counter++
+    return currentEnemies.push(enemyObj)
 }
 
 //verify keypress and act accordingly
@@ -46,12 +55,29 @@ function verifyKeys(event) {
 
 function compareKeys() {
     var statusMessage = document.getElementById('status-message')
-
-    if (currentKeys.join('') == 'restart' || currentKeys.join('') == 'reload')
+    var typed = currentKeys.join('')
+    if (typed == 'restart' || typed == 'reload')
         return location.reload()
-    else if (currentKeys.join('') == 'saiyan')
+    else if (typed == 'saiyan')
         document.getElementById('saiyan').play()
-    else if (currentKeys.join('') == 'start') {
+    else if (typed == 'console') {
+        rows = prompt('Enter rows:')
+        modifer = parseInt(prompt('Enter modifier:', '6000'))
+        category = prompt('Enter category:')
+        currentEnemies = []
+        score = 0
+        createGrid(rows)
+        getWords(rows * 10, category)
+        setTimeout(function() {
+            var i = 0
+            while (i < rows * 3) {
+                generateEnemy(wordsArray, rows)
+                i++
+            }
+        }, 1000)
+        return clear()
+    }
+    else if (typed == 'start') {
         clear()
         document.getElementById('message').style.visibility = 'hidden'
         setTimeout(function() {
@@ -61,9 +87,10 @@ function compareKeys() {
     }
 
     for (i in konami) {
-        if (konami.join('') == currentKeys.join('')) {
+        if (konami.join('') == typed) {
             statusMessage.textContent = "KONAMI'ed"
-            return clear()
+            clear()
+            return fadeDisplay("KONAMI'ED")
         }
     }
 
@@ -72,7 +99,7 @@ function compareKeys() {
         var clone = statusMessage.cloneNode(true)
         statusMessage.parentNode.replaceChild(clone, statusMessage)
 
-        if (currentEnemies[i].text == currentKeys.join('')) {
+        if (currentEnemies[i].text == typed) {
             flashStatus(clone, 'MATCHED', 'yellow-flash')
             removeEnemy(currentEnemies[i].x, currentEnemies[i].y)
             score++
@@ -88,11 +115,14 @@ function compareKeys() {
             return clear()
         }
     }
+
     flashStatus(clone, 'NOPE', 'red-flash')
     var utterThis = new SpeechSynthesisUtterance('nope');
     synth.speak(utterThis)
     return clear()
+
 }
+
 
 ajax: {
 

@@ -10,9 +10,9 @@ var konami = [
 ]
 var win = false
 var score = 0
-
-var rows = 1
-var modifier = 6000
+var counter = 0
+var rows = 10
+var modifier = 5000
 var category = 'creature'
 
 window.onload = function() {

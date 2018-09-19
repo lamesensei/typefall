@@ -30,6 +30,12 @@ header {
 	animation-duration: 10s;
 	animation-fill-mode: forwards;
 	font-size: 15vh;
+	line-height: 0.7;
+}
+
+#sub-title {
+	font-size: 5vh;
+	line-height: 1;
 }
 
 footer {
