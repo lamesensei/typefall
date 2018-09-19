@@ -31,70 +31,67 @@ function verifyKeys(event) {
         }
         else {
             console.log(currentKeys.length);
-            return blink()
+            return clear()
         }
     } else if (event.key == 'Enter') {
-        stopBlink(blink)
+        stopBlink(clear)
         return compareKeys()
     } else {
         currentKeys.push(event.key)
-        stopBlink(blink)
+        stopBlink(clear)
         return displayKeys(currentKeys)
     }
     return console.log(`Something went wrong: ${event.key}`)
 }
 
 function compareKeys() {
-    var currentStatus = document.getElementById('current-status')
+    var statusMessage = document.getElementById('status-message')
 
-    if (currentKeys.join('') == 'restart' || currentKeys.join('') == 'reload' || currentKeys.join('') == 'WINNER') {
+    if (currentKeys.join('') == 'restart' || currentKeys.join('') == 'reload')
         return location.reload()
-    } else if (currentKeys.join('') == 'start') {
-        currentKeys = []
-        blink()
+    else if (currentKeys.join('') == 'saiyan')
+        document.getElementById('saiyan').play()
+    else if (currentKeys.join('') == 'start') {
+        clear()
         document.getElementById('message').style.visibility = 'hidden'
         setTimeout(function() {
             detectLoss(win)
         }, (countDown = rows * modifier - 600))
-        return animationID.play()
+        return falling.play()
     }
 
     for (i in konami) {
         if (konami.join('') == currentKeys.join('')) {
-            currentStatus.textContent = "KONAMI'ed"
-            return blink()
+            statusMessage.textContent = "KONAMI'ed"
+            return clear()
         }
     }
 
     for (i in currentEnemies) {
-        var currentStatus = document.getElementById('current-status')
-        var clone = currentStatus.cloneNode(true)
-        currentStatus.parentNode.replaceChild(clone, currentStatus)
+        var statusMessage = document.getElementById('status-message')
+        var clone = statusMessage.cloneNode(true)
+        statusMessage.parentNode.replaceChild(clone, statusMessage)
 
         if (currentEnemies[i].text == currentKeys.join('')) {
-
-            flash(clone, 'MATCHED', 'yellow-flash')
-            currentKeys = []
+            flashStatus(clone, 'MATCHED', 'yellow-flash')
             removeEnemy(currentEnemies[i].x, currentEnemies[i].y)
             score++
             updateScore()
             if (score == currentEnemies.length) {
                 clone.textContent = 'YOU WIN'
-                currentKeys = ['WINNER'.split('')]
                 win = true
                 var utterThis = new SpeechSynthesisUtterance('Congratulations');
                 synth.speak(utterThis)
-                return displayKeys(currentKeys)
+                clear()
+                return fadeDisplay('WINNER')
             }
-            return blink()
+            return clear()
         }
     }
-    flash(clone, 'WRONG', 'red-flash')
-    var utterThis = new SpeechSynthesisUtterance('WRONG');
+    flashStatus(clone, 'NOPE', 'red-flash')
+    var utterThis = new SpeechSynthesisUtterance('nope');
     synth.speak(utterThis)
-    currentKeys = []
-    //score--
-    return blink()
+    return clear()
 }
 
 ajax: {

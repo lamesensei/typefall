@@ -22,20 +22,23 @@ header {
 }
 
 .middle {
-	/* top: -100%;
-	visibility: hidden;
-	animation-name: falling;
+
+}
+
+#display-message {
+	opacity: 0;
+	animation-duration: 10s;
 	animation-fill-mode: forwards;
-	animation-timing-function: linear;
-	animation-duration: 70s; */
+	font-size: 15vh;
+}
+
+footer {
+	background: black;
+	font-size: 2vw;
 }
 
 .grid-square {
-	/* animation-name: resize;
-	animation-fill-mode: forwards;
-	animation-timing-function: ease-in;
-	animation-duration: 3s;
-	white-space: nowrap; */
+
 	min-height: 200px;
 	max-height: 200px;
 	/* border: 1px solid white; */
@@ -44,15 +47,21 @@ header {
 span {
 }
 
-#current-status {
+#status-message {
 	animation-duration: 1.5s;
 	animation-fill-mode: forwards;
 }
 
-/* @keyframes resize {
-	0% {padding: 0px}
-	100% {padding: 50px}
-} */
+@keyframes morph {
+	0% {font-size: 15vh}
+	50% {font-size: 20vh}
+	100% {font-size: }
+}
+
+@keyframes fadein {
+	0% {opacity: 0}
+	100% {opacity: 1}
+}
 
 @keyframes yellow-flash {
 	0% {color: white; font-weight: normal}
@@ -88,12 +97,4 @@ span {
 		transform: rotate(180deg);
 		opacity: 0;
 	}
-}
-
-footer {
-	position: absolute;
-	background: black;
-	bottom: 0;
-	font-size: 3vw;
-	width: 100%;
 }

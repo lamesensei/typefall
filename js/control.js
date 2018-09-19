@@ -11,8 +11,8 @@ var konami = [
 var win = false
 var score = 0
 
-var rows = 7
-var modifier = 5600
+var rows = 1
+var modifier = 6000
 var category = 'creature'
 
 window.onload = function() {
@@ -26,7 +26,7 @@ window.onload = function() {
             generateEnemy(wordsArray, rows)
             i++
         }
-        blink()
+        clear()
     }, 1000)
 
 
