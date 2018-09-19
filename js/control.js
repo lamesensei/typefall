@@ -12,8 +12,8 @@ var win = false
 var score = 0
 
 var rows = 7
-var modifier = 6000
-var category = 'animals'
+var modifier = 5600
+var category = 'creature'
 
 window.onload = function() {
     //init game

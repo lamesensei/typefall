@@ -49,6 +49,11 @@ span {
 	animation-fill-mode: forwards;
 }
 
+/* @keyframes resize {
+	0% {padding: 0px}
+	100% {padding: 50px}
+} */
+
 @keyframes yellow-flash {
 	0% {color: white; font-weight: normal}
 	50% {color: yellow; font-weight: bold}

@@ -62,7 +62,8 @@ game: {
             transform: `translateY(${middleHeight + document.documentElement.clientHeight}px)`
         }], {
             duration: rows * modifier,
-            fill: 'forwards'
+            fill: 'forwards',
+            // easing: 'ease'
         })
         animationID.pause()
     }
@@ -109,10 +110,16 @@ text: {
 
     function detectLoss(win) {
         if (win == false) {
+            var utterThis = new SpeechSynthesisUtterance('HA HA HA HA HA HA LOSER');
+            synth.speak(utterThis)
             var currentStatus = document.getElementById('current-status')
             currentStatus.style.visible = 'visible'
-            currentStatus.textContent = 'LOSS'
+            currentStatus.style.color = 'red'
+            currentStatus.textContent = 'FAIL'
+            currentKeys = ['LOSER'.split('')]
+            return displayKeys(currentKeys)
         }
+        //return alert('loss error')
     }
 }
 

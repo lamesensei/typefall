@@ -5,6 +5,8 @@ function generateEnemy(arr, difficulty) {
     enemyObj.x = rand(difficulty, 0).toString()
     enemyObj.y = rand(6, 0).toString()
     var randText = arr[rand(arr.length, 0)]
+    if (randText.includes(' '))
+        duplicate++
     for (i in currentEnemies) {
         if (enemyObj.x == currentEnemies[i].x && enemyObj.y == currentEnemies[i].y)
             duplicate++
@@ -45,14 +47,15 @@ function verifyKeys(event) {
 function compareKeys() {
     var currentStatus = document.getElementById('current-status')
 
-    if (currentKeys.join('') == 'restart' || currentKeys.join('') == 'reload') {
+    if (currentKeys.join('') == 'restart' || currentKeys.join('') == 'reload' || currentKeys.join('') == 'WINNER') {
         return location.reload()
     } else if (currentKeys.join('') == 'start') {
         currentKeys = []
         blink()
+        document.getElementById('message').style.visibility = 'hidden'
         setTimeout(function() {
             detectLoss(win)
-        }, (rows * modifier - 600))
+        }, (countDown = rows * modifier - 600))
         return animationID.play()
     }
 
@@ -77,9 +80,11 @@ function compareKeys() {
             updateScore()
             if (score == currentEnemies.length) {
                 clone.textContent = 'YOU WIN'
+                currentKeys = ['WINNER'.split('')]
                 win = true
-                var utterThis = new SpeechSynthesisUtterance('Win');
+                var utterThis = new SpeechSynthesisUtterance('Congratulations');
                 synth.speak(utterThis)
+                return displayKeys(currentKeys)
             }
             return blink()
         }
@@ -89,7 +94,7 @@ function compareKeys() {
     synth.speak(utterThis)
     currentKeys = []
     //score--
-    blink()
+    return blink()
 }
 
 ajax: {
