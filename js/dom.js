@@ -3,7 +3,8 @@ var header = document.querySelector('header')
 var scoreStatus = document.getElementById('score')
 var middle = document.getElementsByClassName('middle')[0]
 var bottom = document.getElementById('input')
-var intervalID, animationID
+var displayMessage = document.getElementById('display-message')
+var interval, falling
 var synth = window.speechSynthesis;
 
 utilities: {
@@ -50,11 +51,12 @@ game: {
             }
         }
 
+        //animate grid falling via JS
         var middleHeight = 200 * rows
         middle.style.position = 'absolute'
         middle.style.top = `-${middleHeight}px`
         middle.style.visibility = 'visible'
-        animationID = middle.animate([
+        falling = middle.animate([
         {
             transform: `translateY(0)`
         },
@@ -65,7 +67,7 @@ game: {
             fill: 'forwards',
             // easing: 'ease'
         })
-        animationID.pause()
+        falling.pause()
     }
     console.log('Grid Initialised');
 }
@@ -88,7 +90,6 @@ text: {
     }
 
     function removeEnemy(x, y) {
-
         var target = document.getElementById(x + y)
         var rollDirection = rand(2, 0)
         if (rollDirection == 1)
@@ -110,14 +111,13 @@ text: {
 
     function detectLoss(win) {
         if (win == false) {
-            var utterThis = new SpeechSynthesisUtterance('HA HA HA HA HA HA LOSER');
+            var utterThis = new SpeechSynthesisUtterance('HAhas');
             synth.speak(utterThis)
-            var currentStatus = document.getElementById('current-status')
-            currentStatus.style.visible = 'visible'
-            currentStatus.style.color = 'red'
-            currentStatus.textContent = 'FAIL'
-            currentKeys = ['LOSER'.split('')]
-            return displayKeys(currentKeys)
+            var statusMessage = document.getElementById('status-message')
+            statusMessage.style.visible = 'visible'
+            statusMessage.style.color = 'red'
+            statusMessage.textContent = 'FAIL'
+            return fadeDisplay('GAME OVER')
         }
         //return alert('loss error')
     }
@@ -125,10 +125,11 @@ text: {
 
 animations: {
     //add setInterval to _
-    function blink() {
+    function clear() {
         stopBlink()
+        currentKeys = []
         bottom.innerHTML = spannify('_')
-        intervalID = setInterval(selector, 500)
+        interval = setInterval(selector, 500)
     }
 
     function blinkEnd()
@@ -136,7 +137,7 @@ animations: {
         stopBlink()
         var addSpan = spannify('_')
         bottom.innerHTML = bottom.innerHTML + addSpan
-        intervalID = setInterval(selector, 500)
+        interval = setInterval(selector, 500)
     }
 
     //animation style
@@ -146,12 +147,19 @@ animations: {
     }
     //clear interval
     function stopBlink() {
-        clearInterval(intervalID);
+        clearInterval(interval);
     }
 
-    function flash(target, message, anim) {
+    function flashStatus(target, message, aname) {
         target.textContent = message
-        target.style.animationName = anim
-        target.id = 'current-status'
+        target.style.animationName = aname
+        target.id = 'status-message'
+    }
+
+    function fadeDisplay(message) {
+        displayMessage.textContent = message
+        displayMessage.style.animationName = 'fadein'
+        header.style.visibility = 'hidden'
+        return console.log(message);
     }
 }
