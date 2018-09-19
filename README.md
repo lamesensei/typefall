@@ -1,5 +1,10 @@
-# Typing Game
+# TYPEFALL
 A javascript based game involving typing. 
+## Technologies
+- HTML
+- CSS3
+- JS
+- BOOTSTRAP
 ## Run
 Visit https://lamesensei.github.io/wdi-unit1-game/ to test the latest commit!
 ## To-do List
