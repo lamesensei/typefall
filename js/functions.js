@@ -3,7 +3,7 @@ function generateEnemy(arr, difficulty) {
     var duplicate = 0
     var enemyObj = new Object()
     enemyObj.x = rand(difficulty, 0).toString()
-    enemyObj.y = rand(5, 0).toString()
+    enemyObj.y = rand(6, 0).toString()
     var randText = arr[rand(arr.length, 0)]
     for (i in currentEnemies) {
         if (enemyObj.x == currentEnemies[i].x && enemyObj.y == currentEnemies[i].y)
@@ -44,8 +44,16 @@ function verifyKeys(event) {
 
 function compareKeys() {
     var currentStatus = document.getElementById('current-status')
+
     if (currentKeys.join('') == 'restart' || currentKeys.join('') == 'reload') {
         return location.reload()
+    } else if (currentKeys.join('') == 'start') {
+        currentKeys = []
+        blink()
+        setTimeout(function() {
+            detectLoss(win)
+        }, (rows * modifier - 600))
+        return animationID.play()
     }
 
     for (i in konami) {
@@ -59,11 +67,6 @@ function compareKeys() {
         var currentStatus = document.getElementById('current-status')
         var clone = currentStatus.cloneNode(true)
         currentStatus.parentNode.replaceChild(clone, currentStatus)
-        // for (x in currentEnemies[i].text) {
-        //     var highlight = document.getElementById(currentKeys[x])
-        //     if (currentEnemies[i].text[x] == currentKeys[x])
-        //         highlight.style.background = 'white'
-        // }
 
         if (currentEnemies[i].text == currentKeys.join('')) {
 
@@ -73,7 +76,8 @@ function compareKeys() {
             score++
             updateScore()
             if (score == currentEnemies.length) {
-                currentStatus.textContent = 'YOU WIN'
+                clone.textContent = 'YOU WIN'
+                win = true
                 var utterThis = new SpeechSynthesisUtterance('Win');
                 synth.speak(utterThis)
             }
@@ -90,11 +94,11 @@ function compareKeys() {
 
 ajax: {
 
-    function getWords() {
+    function getWords(amount, cat) {
         var request = new XMLHttpRequest()
         request.addEventListener("error", requestFailed);
         request.addEventListener("load", wordLoad)
-        request.open("GET", `https://api.datamuse.com/words?ml=food&max=100`)
+        request.open("GET", `https://api.datamuse.com/words?ml=${cat}&max=${amount}`)
         request.send()
     }
 

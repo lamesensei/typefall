@@ -8,28 +8,26 @@ var konami = [
     'ArrowLeft', 'ArrowRight',
     'a', 'b'
 ]
+var win = false
 var score = 0
-var difficulty = 10
-var state = 0
+
+var rows = 7
+var modifier = 6000
+var category = 'animals'
 
 window.onload = function() {
     //init game
-
-    createGrid(difficulty)
-    getWords()
+    getWords(rows * 10, category)
+    createGrid(rows)
     voices = synth.getVoices()
     setTimeout(function() {
         var i = 0
-        setTimeout(function() {
-            detectLoss('loss')
-        }, 69400)
-        while (i < difficulty * 3) {
-            generateEnemy(wordsArray, difficulty)
+        while (i < rows * 3) {
+            generateEnemy(wordsArray, rows)
             i++
         }
         blink()
-
-    }, 600)
+    }, 1000)
 
 
 

@@ -2,8 +2,8 @@ var body = document.querySelector('body')
 var header = document.querySelector('header')
 var scoreStatus = document.getElementById('score')
 var middle = document.getElementsByClassName('middle')[0]
-var bottom = document.querySelector('footer')
-var intervalID
+var bottom = document.getElementById('input')
+var intervalID, animationID
 var synth = window.speechSynthesis;
 
 utilities: {
@@ -28,18 +28,18 @@ utilities: {
 
 game: {
     //create 3x3 grid
-    function createGrid(size) {
+    function createGrid(rows) {
         //remove exsisting grid if any
         while (middle.lastChild) {
             middle.removeChild(middle.lastChild)
         }
 
         //create individual grid squares
-        for (x = 0; x < size; x++) {
+        for (x = 0; x < rows; x++) {
             var newRow = document.createElement('div')
             newRow.classList = 'row'
             middle.appendChild(newRow)
-            for (y = 0; y < 5; y++) {
+            for (y = 0; y < 6; y++) {
                 var square = document.createElement('div')
                 square.classList = 'grid-square col text-center'
                 square.id = x.toString() + y.toString()
@@ -50,26 +50,24 @@ game: {
             }
         }
 
-        var middleSize = 200 * size + 200
-        console.log(middleSize);
+        var middleHeight = 200 * rows
         middle.style.position = 'absolute'
-        middle.style.top = `-${middleSize}px`
+        middle.style.top = `-${middleHeight}px`
         middle.style.visibility = 'visible'
-        middle.animate([
+        animationID = middle.animate([
         {
-            transform: `translate(0)`
+            transform: `translateY(0)`
         },
         {
-            transform: `translate(0,${middleSize + document.documentElement.clientHeight}px)`
+            transform: `translateY(${middleHeight + document.documentElement.clientHeight}px)`
         }], {
-            duration: 50000,
+            duration: rows * modifier,
             fill: 'forwards'
         })
+        animationID.pause()
     }
     console.log('Grid Initialised');
 }
-
-
 
 text: {
     //display enemy on DOM
@@ -89,19 +87,6 @@ text: {
     }
 
     function removeEnemy(x, y) {
-        // var target = document.getElementById(x + y).children
-        // console.log(target);
-        // for (var i = 0; i < target.length; i++) {
-        //     console.log(target[i]);
-        //     var rollDirection = rand(2, 0)
-        //     if (rollDirection == 1)
-        //         target[i].style.animationName = 'rollLeft'
-        //     else
-        //         target[i].style.animationName = 'rollRight'
-        //     target[i].style.animationFillMode = 'forwards'
-        //     target[i].style.animationTimingFunction = 'linear'
-        //     target[i].style.animationDuration = '2s'
-        // }
 
         var target = document.getElementById(x + y)
         var rollDirection = rand(2, 0)
@@ -119,13 +104,13 @@ text: {
     }
 
     function updateScore() {
-        console.log(score);
-        return scoreStatus.textContent = score
+        return scoreStatus.textContent = `${score}/${currentEnemies.length}`
     }
 
-    function detectLoss(loss) {
-        if (loss) {
+    function detectLoss(win) {
+        if (win == false) {
             var currentStatus = document.getElementById('current-status')
+            currentStatus.style.visible = 'visible'
             currentStatus.textContent = 'LOSS'
         }
     }

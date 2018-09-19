@@ -1,46 +1,44 @@
 html {
-		overscroll-behavior: none
+	overscroll-behavior: none
 }
 
 html, body {
-		height: 100%;
-		font-family: 'Share Tech Mono', monospace;
-		font-size: 2vw;
-		background: black;
-		color: white;
-		position: relative;
-		overflow: hidden;
+	height: 100%;
+	font-family: 'Share Tech Mono', monospace;
+	font-size: 2vw;
+	background: black;
+	color: white;
+	position: relative;
+	overflow: hidden;
 }
 
 #title {
-		font-size: 5vw;
+	font-size: 5vw;
 }
 
-col {}
 
 header {
-		background: black;
+	background: black;
 }
 
 .middle {
-		/* top: -100%;
-		visibility: hidden;
-		animation-name: falling;
-		animation-fill-mode: forwards;
-		animation-timing-function: linear;
-		animation-duration: 70s; */
-
+	/* top: -100%;
+	visibility: hidden;
+	animation-name: falling;
+	animation-fill-mode: forwards;
+	animation-timing-function: linear;
+	animation-duration: 70s; */
 }
 
 .grid-square {
-		/* animation-name: resize;
-		animation-fill-mode: forwards;
-		animation-timing-function: ease-in;
-		animation-duration: 3s;
-		white-space: nowrap; */
-				min-height: 200px;
-				max-height: 200px;
-		border: 1px solid white;
+	/* animation-name: resize;
+	animation-fill-mode: forwards;
+	animation-timing-function: ease-in;
+	animation-duration: 3s;
+	white-space: nowrap; */
+	min-height: 200px;
+	max-height: 200px;
+	/* border: 1px solid white; */
 }
 
 span {
@@ -63,54 +61,34 @@ span {
 	100% {color: white;font-weight: normal; opacity:0;}
 }
 
-@keyframes resize {
-		from {
-				padding-top: 0px;
-		}
-
-		to {
-				padding-top: 30px;
-		}
-}
-
-@keyframes falling {
-		from {
-				top: -100%;
-		}
-
-		to {
-				top: 100%;
-		}
-}
-
 @keyframes rollRight {
-		from {
-				transform: rotate(0deg);
-				opacity: 1;
-		}
+	0% {
+		transform: rotate(0deg);
+		opacity: 1;
+	}
 
-		to {
-				transform: rotate(180deg);
-				opacity: 0;
-		}
+	100% {
+		transform: rotate(180deg);
+		opacity: 0;
+	}
 }
 
 @keyframes rollLeft {
-		from {
-				transform: rotate(360deg);
-				opacity: 1;
-		}
+	0% {
+		transform: rotate(360deg);
+		opacity: 1;
+	}
 
-		to {
-				transform: rotate(180deg);
-				opacity: 0;
-		}
+	100% {
+		transform: rotate(180deg);
+		opacity: 0;
+	}
 }
 
 footer {
-		position: absolute;
-		background: black;
-		bottom: 0;
-		font-size: 3vw;
-		width: 100%;
+	position: absolute;
+	background: black;
+	bottom: 0;
+	font-size: 3vw;
+	width: 100%;
 }
