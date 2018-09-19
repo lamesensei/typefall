@@ -29,7 +29,6 @@ utilities: {
 game: {
     //create 3x3 grid
     function createGrid(size) {
-        var milliseconds = 0.1
         //remove exsisting grid if any
         while (middle.lastChild) {
             middle.removeChild(middle.lastChild)
@@ -40,21 +39,32 @@ game: {
             var newRow = document.createElement('div')
             newRow.classList = 'row'
             middle.appendChild(newRow)
-            for (y = 0; y < size; y++) {
+            for (y = 0; y < 5; y++) {
                 var square = document.createElement('div')
                 square.classList = 'grid-square col text-center'
                 square.id = x.toString() + y.toString()
-                square.style.animationDelay = `${milliseconds += 0.1}`
-                square.style.fontSize = `${rand(6, 2)}vw`
+                square.style.fontSize = `${rand(7, 3)}vw`
                 var randomColor = `rgba(${rand(250, 50)},${rand(250, 50)},${rand(250, 50)})`
                 square.style.color = `${randomColor}`
-                // square.style.border = `1px solid white`
                 newRow.appendChild(square)
             }
         }
+
+        var middleSize = 200 * size + 200
+        console.log(middleSize);
         middle.style.position = 'absolute'
-        middle.style.top = '-100%'
+        middle.style.top = `-${middleSize}px`
         middle.style.visibility = 'visible'
+        middle.animate([
+        {
+            transform: `translate(0)`
+        },
+        {
+            transform: `translate(0,${middleSize + document.documentElement.clientHeight}px)`
+        }], {
+            duration: 50000,
+            fill: 'forwards'
+        })
     }
     console.log('Grid Initialised');
 }

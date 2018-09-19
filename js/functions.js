@@ -3,7 +3,7 @@ function generateEnemy(arr, difficulty) {
     var duplicate = 0
     var enemyObj = new Object()
     enemyObj.x = rand(difficulty, 0).toString()
-    enemyObj.y = rand(difficulty, 0).toString()
+    enemyObj.y = rand(5, 0).toString()
     var randText = arr[rand(arr.length, 0)]
     for (i in currentEnemies) {
         if (enemyObj.x == currentEnemies[i].x && enemyObj.y == currentEnemies[i].y)
@@ -15,7 +15,7 @@ function generateEnemy(arr, difficulty) {
         enemyObj.text = randText
         displayEnemy(enemyObj.x, enemyObj.y, spannify(enemyObj.text))
         currentEnemies.push(enemyObj)
-        return console.log(`Enemy Generated: ${enemyObj.text}, ${enemyObj.x}, ${enemyObj.y}`);
+        //return console.log(`Enemy Generated: ${enemyObj.text}, ${enemyObj.x}, ${enemyObj.y}`);
     } else {}
     return console.log(`Duplicate found and rejected`)
 }
@@ -94,7 +94,7 @@ ajax: {
         var request = new XMLHttpRequest()
         request.addEventListener("error", requestFailed);
         request.addEventListener("load", wordLoad)
-        request.open("GET", `https://api.datamuse.com/words?ml=computer&max=100`)
+        request.open("GET", `https://api.datamuse.com/words?ml=food&max=100`)
         request.send()
     }
 

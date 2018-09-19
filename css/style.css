@@ -23,20 +23,24 @@ header {
 }
 
 .middle {
-		top: -100%;
+		/* top: -100%;
 		visibility: hidden;
 		animation-name: falling;
 		animation-fill-mode: forwards;
 		animation-timing-function: linear;
-		animation-duration: 70s;
+		animation-duration: 70s; */
+
 }
 
 .grid-square {
-		animation-name: resize;
+		/* animation-name: resize;
 		animation-fill-mode: forwards;
 		animation-timing-function: ease-in;
 		animation-duration: 3s;
-		white-space: nowrap;
+		white-space: nowrap; */
+				min-height: 200px;
+				max-height: 200px;
+		border: 1px solid white;
 }
 
 span {
