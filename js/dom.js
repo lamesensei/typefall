@@ -33,6 +33,7 @@ game: {
         //remove exsisting grid if any
         while (middle.lastChild) {
             middle.removeChild(middle.lastChild)
+            console.log('grid removed');;
         }
 
         //create individual grid squares
@@ -40,7 +41,7 @@ game: {
             var newRow = document.createElement('div')
             newRow.classList = 'row'
             middle.appendChild(newRow)
-            for (y = 0; y < 6; y++) {
+            for (y = 0; y < 7; y++) {
                 var square = document.createElement('div')
                 square.classList = 'grid-square col text-center'
                 square.id = x.toString() + y.toString()
@@ -65,7 +66,7 @@ game: {
         }], {
             duration: rows * modifier,
             fill: 'forwards',
-            easing: 'ease-in'
+            easing: 'ease-out'
         })
         falling.pause()
     }
@@ -100,7 +101,7 @@ text: {
         target.style.animationTimingFunction = 'linear'
         target.style.animationDuration = '1s'
 
-        var utterThis = new SpeechSynthesisUtterance('NOICE')
+        var utterThis = new SpeechSynthesisUtterance('Nice')
         synth.speak(utterThis)
         return target.style.textDecoration = 'line-through'
     }
@@ -167,7 +168,7 @@ animations: {
     }
 
     function fadeDisplay(message) {
-        displayMessage.textContent = message
+        displayMessage.innerHTML = `${message}<br><span id ="sub-title">${score}/${currentEnemies.length}</span`
         displayMessage.style.animationName = 'fadein'
         header.style.visibility = 'hidden'
         return console.log(message);
