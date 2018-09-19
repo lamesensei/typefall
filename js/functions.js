@@ -47,9 +47,11 @@ function verifyKeys(event) {
 function compareKeys() {
     var statusMessage = document.getElementById('status-message')
 
-    if (currentKeys.join('') == 'restart' || currentKeys.join('') == 'reload') {
+    if (currentKeys.join('') == 'restart' || currentKeys.join('') == 'reload')
         return location.reload()
-    } else if (currentKeys.join('') == 'start') {
+    else if (currentKeys.join('') == 'saiyan')
+        document.getElementById('saiyan').play()
+    else if (currentKeys.join('') == 'start') {
         clear()
         document.getElementById('message').style.visibility = 'hidden'
         setTimeout(function() {
@@ -80,6 +82,7 @@ function compareKeys() {
                 win = true
                 var utterThis = new SpeechSynthesisUtterance('Congratulations');
                 synth.speak(utterThis)
+                clear()
                 return fadeDisplay('WINNER')
             }
             return clear()

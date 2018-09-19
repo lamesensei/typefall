@@ -27,7 +27,7 @@ header {
 
 #display-message {
 	opacity: 0;
-	animation-duration: 3s;
+	animation-duration: 10s;
 	animation-fill-mode: forwards;
 	font-size: 15vh;
 }
@@ -50,6 +50,12 @@ span {
 #status-message {
 	animation-duration: 1.5s;
 	animation-fill-mode: forwards;
+}
+
+@keyframes morph {
+	0% {font-size: 15vh}
+	50% {font-size: 20vh}
+	100% {font-size: }
 }
 
 @keyframes fadein {

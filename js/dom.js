@@ -65,7 +65,7 @@ game: {
         }], {
             duration: rows * modifier,
             fill: 'forwards',
-            // easing: 'ease'
+            easing: 'ease-in'
         })
         falling.pause()
     }
@@ -111,15 +111,25 @@ text: {
 
     function detectLoss(win) {
         if (win == false) {
-            var utterThis = new SpeechSynthesisUtterance('HAhas');
-            synth.speak(utterThis)
+            // var utterThis = new SpeechSynthesisUtterance('HAhas');
+            // synth.speak(utterThis)
             var statusMessage = document.getElementById('status-message')
             statusMessage.style.visible = 'visible'
             statusMessage.style.color = 'red'
             statusMessage.textContent = 'FAIL'
+            pauseAudio()
+            document.getElementById('gg').play()
             return fadeDisplay('GAME OVER')
         }
         //return alert('loss error')
+    }
+
+    function pauseAudio() {
+        var allAudio = document.getElementsByTagName('audio')
+        for (var i = 0; i < allAudio.length; i++) {
+            allAudio[i].pause()
+        }
+
     }
 }
 
