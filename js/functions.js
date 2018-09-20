@@ -121,7 +121,7 @@ function initGame() {
     currentEnemies = []
     score = 0
     createGrid(rows)
-    header.style.visibility = 'visible'
+    //header.style.visibility = 'visible'
     getWords(rows * 10, category)
     setTimeout(function() {
         var i = 0
