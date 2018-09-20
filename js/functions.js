@@ -5,8 +5,9 @@ function generateEnemy(arr, difficulty) {
     enemyObj.x = rand(difficulty, 0).toString()
     enemyObj.y = rand(7, 0).toString()
     var randText = arr[rand(arr.length, 0)]
-    if (randText.includes(' '))
-        duplicate++
+    randText = randText.replace(/\s/g, '');
+    // if (randText.includes(' '))
+    //     duplicate++
     for (i in currentEnemies) {
         if (randText == currentEnemies[i].text)
             duplicate++
@@ -27,7 +28,7 @@ function generateEnemy(arr, difficulty) {
 
 function insertEnemy(enemyObj) {
     displayEnemy(enemyObj.x, enemyObj.y, spannify(enemyObj.text))
-    counter++
+    //counter++
     return currentEnemies.push(enemyObj)
 }
 
@@ -64,21 +65,13 @@ function compareKeys() {
         rows = prompt('Enter rows:')
         modifer = parseInt(prompt('Enter modifier:', '6000'))
         category = prompt('Enter category:')
-        currentEnemies = []
-        score = 0
-        createGrid(rows)
-        getWords(rows * 10, category)
-        setTimeout(function() {
-            var i = 0
-            while (i < rows * 3) {
-                generateEnemy(wordsArray, rows)
-                i++
-            }
-        }, 1000)
-        return clear()
+
+        return initGame()
     }
     else if (typed == 'start') {
         clear()
+        hideDisplay()
+        header.style.visibility = 'visible'
         document.getElementById('message').style.visibility = 'hidden'
         setTimeout(function() {
             detectLoss(win)
@@ -90,6 +83,7 @@ function compareKeys() {
         if (konami.join('') == typed) {
             statusMessage.textContent = "KONAMI'ed"
             clear()
+            score = currentEnemies.length
             return fadeDisplay("KONAMI'ED")
         }
     }
@@ -123,6 +117,22 @@ function compareKeys() {
 
 }
 
+function initGame() {
+    currentEnemies = []
+    score = 0
+    createGrid(rows)
+    header.style.visibility = 'visible'
+    getWords(rows * 10, category)
+    setTimeout(function() {
+        var i = 0
+        while (i < rows * 3) {
+            generateEnemy(wordsArray, rows)
+            i++
+        }
+    }, 2000)
+    return clear()
+}
+
 
 ajax: {
 
@@ -143,6 +153,7 @@ ajax: {
     function wordLoad(event) {
         var result = JSON.parse(this.responseText)
         var wordCount = 0
+        wordsArray = []
         result.forEach(function(e) {
             wordsArray.push(e.word)
             wordCount++

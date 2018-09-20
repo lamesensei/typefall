@@ -45,7 +45,7 @@ game: {
                 var square = document.createElement('div')
                 square.classList = 'grid-square col text-center'
                 square.id = x.toString() + y.toString()
-                square.style.fontSize = `${rand(7, 3)}vw`
+                square.style.fontSize = `${rand(6, 2.5)}vw`
                 var randomColor = `rgba(${rand(250, 50)},${rand(250, 50)},${rand(250, 50)})`
                 square.style.color = `${randomColor}`
                 newRow.appendChild(square)
@@ -56,13 +56,15 @@ game: {
         var middleHeight = 200 * rows
         middle.style.position = 'absolute'
         middle.style.top = `-${middleHeight}px`
-        middle.style.visibility = 'visible'
+        middle.style.visibility = 'hidden'
         falling = middle.animate([
         {
-            transform: `translateY(0)`
+            transform: `translateY(0)`,
+            visibility: `visible`
         },
         {
-            transform: `translateY(${middleHeight + document.documentElement.clientHeight}px)`
+            transform: `translateY(${middleHeight + document.documentElement.clientHeight}px)`,
+            visibility: `visible`
         }], {
             duration: rows * modifier,
             fill: 'forwards',
@@ -168,9 +170,19 @@ animations: {
     }
 
     function fadeDisplay(message) {
-        displayMessage.innerHTML = `${message}<br><span id ="sub-title">${score}/${currentEnemies.length}</span`
-        displayMessage.style.animationName = 'fadein'
+        var displayMessage = document.getElementById('display-message')
+        var clone = displayMessage.cloneNode(true)
+        displayMessage.parentNode.replaceChild(clone, displayMessage)
+        clone.innerHTML = `${message}<br><span id ="sub-title">${score}/${currentEnemies.length}</span>`
+        clone.style.animationName = 'fadein'
         header.style.visibility = 'hidden'
-        return console.log(message);
+        return console.log(message)
+    }
+
+    function hideDisplay() {
+        var displayMessage = document.getElementById('display-message')
+        var clone = displayMessage.cloneNode(true)
+        displayMessage.parentNode.replaceChild(clone, displayMessage)
+        return clone.style.animationName = 'fadeout'
     }
 }

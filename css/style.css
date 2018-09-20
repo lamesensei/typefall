@@ -19,6 +19,7 @@ html, body {
 
 header {
 	background: black;
+	visibility: hidden;
 }
 
 .middle {
@@ -26,8 +27,8 @@ header {
 }
 
 #display-message {
-	opacity: 0;
-	animation-duration: 10s;
+	opacity: 1;
+	animation-duration: 3s;
 	animation-fill-mode: forwards;
 	font-size: 15vh;
 	line-height: 0.7;
@@ -44,29 +45,42 @@ footer {
 }
 
 .grid-square {
-
+	/* overflow-x: visible; */
 	min-height: 200px;
 	max-height: 200px;
 	/* border: 1px solid white; */
+	/* white-space: nowrap; */
 }
 
 span {
+	/* display: inline-block; */
 }
+
+/* #fall {
+	animation-name: falling;
+	animation-duration: 1.5s
+} */
 
 #status-message {
 	animation-duration: 1.5s;
 	animation-fill-mode: forwards;
 }
 
-@keyframes morph {
+
+/* @keyframes morph {
 	0% {font-size: 15vh}
 	50% {font-size: 20vh}
 	100% {font-size: }
-}
+} */
 
 @keyframes fadein {
 	0% {opacity: 0}
 	100% {opacity: 1}
+}
+
+@keyframes fadeout {
+	0% {opacity: 1}
+	100% {opacity: 0}
 }
 
 @keyframes yellow-flash {
